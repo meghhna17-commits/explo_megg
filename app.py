@@ -9,7 +9,8 @@ model = joblib.load('model.pkl')
 # Load dataset to get column names
 df = pd.read_csv('NP_dataset (1).csv')
 # Drop unwanted column
-df = df.drop(columns=['LC'])
+if 'LC' in df.columns:
+    df = df.drop(columns=['LC'])
 
 # Separate features and target
 feature_names = df.columns[:-2]   # first columns = inputs
