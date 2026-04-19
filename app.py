@@ -24,10 +24,11 @@ st.write("Enter values for the following features:")
 # Input fields
 inputs = []
 
-for col in feature_names:
-    val = st.number_input(col.replace("_", " "), value=0.0)
-    inputs.append(val)
+st.markdown("### Enter values for each feature:")
 
+for col in feature_names:
+    val = st.number_input(label=str(col), value=0.0, step=0.1)
+    inputs.append(val)
 # Prediction button
 if st.button("Predict"):
     data = np.array(inputs).reshape(1, -1)
