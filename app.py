@@ -6,10 +6,10 @@ import pandas as pd
 # Load model
 model = joblib.load('model.pkl')
 
-# Load dataset
-df = pd.read_csv('NP_dataset (1).csv')
+# 🔥 FIXED CSV LOADING (important)
+df = pd.read_csv('NP_dataset (1).csv', sep=None, engine='python')
 
-# Drop LC if exists
+# Drop LC safely
 if 'LC' in df.columns:
     df = df.drop(columns=['LC'])
 
@@ -21,13 +21,13 @@ target_names = list(df.columns[-2:])
 st.title("NanoPredict: PLGA Modeling Tool")
 st.markdown("### Enter values for each feature:")
 
-# Inputs
+# Input fields
 inputs = []
 for col in feature_names:
-    val = st.number_input(col, value=0.0)
+    val = st.number_input(label=col, value=0.0)
     inputs.append(val)
 
-# Predict
+# Prediction
 if st.button("Predict"):
     data = np.array(inputs).reshape(1, -1)
     prediction = model.predict(data)
