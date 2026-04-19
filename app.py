@@ -13,8 +13,8 @@ if 'LC' in df.columns:
     df = df.drop(columns=['LC'])
 
 # Separate features and target
-feature_names = df.columns[:-2]   # first columns = inputs
-target_names = df.columns[-2:]    # last 2 columns = outputs
+feature_names = df.columns[:16]
+target_names = df.columns[16:]
 
 # App title
 st.title("NanoPredict: PLGA Modeling Tool")
